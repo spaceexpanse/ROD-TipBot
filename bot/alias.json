@@ -1,13 +1,5 @@
 {
-"austip":"tipaus",
-"genixtip":"tipgenix",
-"dogetip":"tipdoge",
-"lbctip":"tiplbc",
-"protontip":"tipproton",
-"ufotip":"tipufo",
-"pxctip":"tippxc",
-"ftctip":"tipftc",
-"vtltip": "tipvtl",
+"rodtip":"tiprod",
 "tip":"tiphelp",
-"tip help":"tiphelp"
+"help":"tiphelp"
 }

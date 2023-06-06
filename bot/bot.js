@@ -13,23 +13,30 @@ var aliases;
 // check if any aliases are defined
 try {
   var time = moment()
-    .tz('America/Los_Angeles')
+    .tz('Europe/Vienna')
     .format('MM-DD-YYYY hh:mm a');
   aliases = require('./alias.json');
   console.log('[' + time + ' PST][' + pm2Name + '] ' + Object.keys(aliases).length + ' aliases Loaded!');
 } catch (e) {
   var time = moment()
-    .tz('America/Los_Angeles')
+    .tz('Europe/Vienna')
     .format('MM-DD-YYYY hh:mm a');
   console.log('[' + time + ' PST][' + pm2Name + '] No aliases defined');
 }
 var commands = {};
 
-var bot = new Discord.Client();
+var bot = new Discord.Client(({ intents: [
+ 41         Discord.Intents.FLAGS.GUILDS,
+ 42         Discord.Intents.FLAGS.GUILD_MESSAGES,
+ 43         Discord.Intents.FLAGS.GUILD_MEMBERS,
+ 44         Discord.Intents.FLAGS.GUILD_PRESENCES,
+ 45         Discord.Intents.FLAGS.DIRECT_MESSAGES,
+ 46         Discord.Intents.FLAGS.MESSAGE_CONTENT,
+ 47 ]});
 
 bot.on('ready', function() {
   var time = moment()
-    .tz('America/Los_Angeles')
+    .tz('Europe/Vienna')
     .format('MM-DD-YYYY hh:mm a');
   console.log(
     '[' +
@@ -42,7 +49,7 @@ bot.on('ready', function() {
       bot.guilds.array().length +
       ' servers'
   );
-  bot.channels
+  bot.channels.cache
     .get(logChannel)
     .send(
       '[' +
@@ -65,7 +72,7 @@ bot.on('ready', function() {
       config.prefix +
       'tiphelp in Discord for a commands list.'
   );
-  bot.channels
+  bot.channels.cache
     .get(logChannel)
     .send(
       '[' +
@@ -92,10 +99,10 @@ bot.on('ready', function() {
 
 process.on('uncaughtException', err => {
   var time = moment()
-    .tz('America/Los_Angeles')
+    .tz('Europe/Vienna')
     .format('MM-DD-YYYY hh:mm a');
   console.log('[' + time + ' PST][' + pm2Name + '] uncaughtException: ' + err);
-  bot.channels
+  bot.channels.cache
     .get(logChannel)
     .send('[' + time + ' PST][' + pm2Name + '] uncaughtException: ' + err);
   process.exit(1); //exit node.js with an error
@@ -103,10 +110,10 @@ process.on('uncaughtException', err => {
 
 process.on('unhandledRejection', err => {
   var time = moment()
-    .tz('America/Los_Angeles')
+    .tz('Europe/Vienna')
     .format('MM-DD-YYYY hh:mm a');
   console.log('[' + time + ' PST][' + pm2Name + '] unhandledRejection: ' + err);
-  bot.channels
+  bot.channels.cache
     .get(logChannel)
     .send('[' + time + ' PST][' + pm2Name + '] unhandledRejection: ' + err);
   process.exit(1); //exit node.js with an error
@@ -114,7 +121,7 @@ process.on('unhandledRejection', err => {
 
 bot.on('disconnected', function() {
   var time = moment()
-    .tz('America/Los_Angeles')
+    .tz('Europe/Vienna')
     .format('MM-DD-YYYY hh:mm a');
   console.log('[' + time + ' PST][' + pm2Name + '] Disconnected!');
   process.exit(1); //exit node.js with an error
@@ -122,7 +129,7 @@ bot.on('disconnected', function() {
 
 bot.on('error', function(error) {
   var time = moment()
-    .tz('America/Los_Angeles')
+    .tz('Europe/Vienna')
     .format('MM-DD-YYYY hh:mm a');
   console.log('[' + time + ' PST][' + pm2Name + '] error: ' + error);
   process.exit(1); //exit node.js with an error
@@ -193,9 +200,9 @@ function checkMessageForCommand(msg, isEdit) {
           msgTxt += '\n' + e.stack;
         }
         var time = moment()
-          .tz('America/Los_Angeles')
+          .tz('Europe/Vienna')
           .format('MM-DD-YYYY hh:mm a');
-        bot.channels
+        bot.channels.cache
           .get(logChannel)
           .send('[' + time + ' PST][' + pm2Name + '] ' + msgTxt + linebreak);
       }
@@ -221,10 +228,10 @@ exports.addCommand = function(commandName, commandObject) {
     commands[commandName] = commandObject;
   } catch (err) {
     var time = moment()
-      .tz('America/Los_Angeles')
+      .tz('Europe/Vienna')
       .format('MM-DD-YYYY hh:mm a');
     console.log('[' + time + ' PST][' + pm2Name + '] Error addCommand: ' + err);
-    bot.channels
+    bot.channels.cache
       .get(logChannel)
       .send('[' + time + ' PST][' + pm2Name + '] Error addCommand: ' + err);
   }
@@ -234,12 +241,12 @@ exports.addCustomFunc = function(customFunc) {
     customFunc(bot);
   } catch (err) {
     var time = moment()
-      .tz('America/Los_Angeles')
+      .tz('Europe/Vienna')
       .format('MM-DD-YYYY hh:mm a');
     console.log(
       '[' + time + ' PST][' + pm2Name + '] Error addCustomFunc: ' + err
     );
-    bot.channels
+    bot.channels.cache
       .get(logChannel)
       .send('[' + time + ' PST][' + pm2Name + '] Error addCustomFunc: ' + err);
   }

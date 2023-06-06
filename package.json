@@ -5,7 +5,7 @@
     "bitcoin": "^3.0.1",
     "chrono-node": "^1.3.5",
     "config": "^1.27.0",
-    "discord.js": "^11.2.1",
+    "discord.js": "^12.5.3",
     "embed-creator": "^1.1.4",
     "jsonpath": "^0.2.12",
     "moment": "^2.20.1",
@@ -25,11 +25,11 @@
   "devDependencies": {
     "prettier": "1.7.4"
   },
-  "name": "tipbot",
+  "name": "rodtipbot",
   "version": "1.0.0",
   "description": "Crypto coin tipbot for Discord",
   "main": "bot/bot.js",
-  "repository": "https://github.com/MSFTserver/TipBot",
-  "author": "MSFTserver <MSFTserver@gmail.com>",
+  "repository": "https://github.com/spaceexpanse/RODTipBot",
+  "author": "Walter Philips <spacexpanse.org@gmail.com>",
   "license": "MIT"
 }
